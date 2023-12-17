@@ -1,15 +1,23 @@
-package controller;
+package org.example.controller;
 
-import dto.Profile;
-import util.Action;
+import org.example.dto.Profile;
+import org.example.util.GetAction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
+import java.util.Scanner;
+
+@Controller
 public class UserController {
+
+    @Autowired
+    private GetAction getAction;
 
     public void start(Profile profile) {
         boolean u=true;
         while (u){
              menu();
-             switch (Action.getAction()){
+             switch (getAction.getAction()){
                  case 1->startTheTest();
                  case 2->statistics();
                  case 3->u=false;
@@ -33,6 +41,5 @@ public class UserController {
                 3.Exit >
                 """);
     }
-
 
 }

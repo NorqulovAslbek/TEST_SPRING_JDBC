@@ -1,25 +1,32 @@
-package controller;
+package org.example.controller;
 
-import dto.Profile;
-import enums.UserType;
-import service.AuthService;
-import util.Action;
-import util.MD5;
+import org.example.dto.Profile;
+import org.example.enums.UserType;
+import org.example.service.AuthService;
+import org.example.util.GetAction;
+import org.example.util.MD5;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
+@Controller
 public class AuthController {
-    private final Scanner scanner = new Scanner(System.in);
-    private final Profile profile = new Profile();
-    private final AuthService authService = new AuthService();
+    @Autowired
+    private Scanner scanner;
+    @Autowired
+    private AuthService authService;
+    @Autowired
+    private GetAction getAction;
+
 
 
     public void start() {
         boolean n = true;
         while (n) {
             menu();
-            switch (Action.getAction()) {
+            switch (getAction.getAction()) {
                 case 1 -> registration();
                 case 2 -> login();
                 case 0 -> n = false;
@@ -37,8 +44,7 @@ public class AuthController {
         String phone = scanner.next();
         System.out.print("Enter password:");
         String password = scanner.next();
-        authService.login(phone,password);
-
+        authService.login(phone, password);
 
     }
 
@@ -51,6 +57,7 @@ public class AuthController {
         String phone = scanner.next();
         System.out.print("Enter password:");
         String password = scanner.next();
+        Profile profile = new Profile();
         profile.setName(name);
         profile.setSurname(surname);
         profile.setPhone(phone);
@@ -68,6 +75,7 @@ public class AuthController {
                 0. Exit>
                 """);
     }
+
 
 
 }

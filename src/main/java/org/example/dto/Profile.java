@@ -1,6 +1,6 @@
-package dto;
+package org.example.dto;
 
-import enums.UserType;
+import org.example.enums.UserType;
 import lombok.Data;
 
 import java.time.LocalDateTime;
