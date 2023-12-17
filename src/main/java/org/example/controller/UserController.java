@@ -5,14 +5,11 @@ import org.example.util.GetAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import java.util.Scanner;
 
 @Controller
 public class UserController {
-
     @Autowired
     private GetAction getAction;
-
     public void start(Profile profile) {
         boolean u=true;
         while (u){
@@ -24,7 +21,6 @@ public class UserController {
                  default -> System.out.print("You have selected a number that does not exist!!");
              }
         }
-
     }
 
     private void statistics() {

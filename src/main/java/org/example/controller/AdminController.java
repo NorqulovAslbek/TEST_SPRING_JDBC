@@ -2,6 +2,7 @@ package org.example.controller;
 
 import org.example.dto.Profile;
 import org.example.dto.Test;
+import org.example.service.ProfileService;
 import org.example.service.TestService;
 import org.example.util.GetAction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class AdminController {
     @Autowired
     private TestService testService;
     @Autowired
+    private ProfileService profileService;
+    @Autowired
     private GetAction getAction;
 
     public void start(Profile profile) {
@@ -30,35 +33,30 @@ public class AdminController {
             switch (getAction.getAction()) {
                 case 1 -> addTest();
                 case 2 -> changeTest();
-                case 3 -> deleteTest();
+                case 3 -> deleteTest(profile);
                 case 4 -> startTheTest(profile);
                 case 5 -> userStatistics();
                 case 0 -> n = false;
                 default -> System.out.println("You have selected a number that does not exist!!");
             }
-
         }
-
-
     }
 
     private void userStatistics() {
-
+       profileService.usersStatisticsService();
     }
 
     private void startTheTest(Profile profile) {
         testService.startTheTestService(profile);
-
-
     }
 
-    private void deleteTest() {
-
+    private void deleteTest(Profile profile) {
+        testService.deleteTestService(profile);
     }
 
 
     private void changeTest() {
-
+        testService.changeTestService();
     }
 
     private void addTest() {
@@ -99,10 +97,9 @@ public class AdminController {
             String stopOrNext = scanner.nextLine();
             if (stopOrNext.equals("0")) {
                 testService.createTestService(list);
-                k=false;
+                k = false;
             }
         }
-
 
     }
 

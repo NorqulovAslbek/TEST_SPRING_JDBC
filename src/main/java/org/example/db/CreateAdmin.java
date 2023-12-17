@@ -2,7 +2,7 @@ package org.example.db;
 
 import org.example.dto.Profile;
 import org.example.enums.UserType;
-import org.example.repository.AuthRepository;
+import org.example.repository.ProfileRepository;
 import org.example.util.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Repository
 public class CreateAdmin {
     @Autowired
-    private AuthRepository authRepository;
+    private ProfileRepository authRepository;
 
     public void createAdmin() {
         Profile profile = new Profile();

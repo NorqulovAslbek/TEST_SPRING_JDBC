@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 
-public class AuthRepository {
+public class ProfileRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -29,7 +29,6 @@ public class AuthRepository {
             ps.setInt(7, profile.getResult());
         });
         return update != 0;
-
     }
 
 
@@ -43,6 +42,17 @@ public class AuthRepository {
         String sql = "SELECT * FROM profile_test WHERE phone=? AND password=?";
         List<Profile> profiles = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Profile.class), phone, MD5.getMD5Password(password));
         return profiles.get(0);
+    }
+
+    public void updateProfileResult(Integer result, Integer id) {
+        String sql = "UPDATE profile_test SET result=? WHERE id=?";
+        jdbcTemplate.update(sql, result, id);
+    }
+
+    public List<Profile> getProfileList() {
+        String sql = "SELECT *FROM profile_test";
+        List<Profile> profiles = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Profile.class));
+        return profiles;
     }
 
 

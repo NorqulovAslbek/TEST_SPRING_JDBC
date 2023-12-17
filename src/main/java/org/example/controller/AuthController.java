@@ -2,7 +2,7 @@ package org.example.controller;
 
 import org.example.dto.Profile;
 import org.example.enums.UserType;
-import org.example.service.AuthService;
+import org.example.service.ProfileService;
 import org.example.util.GetAction;
 import org.example.util.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class AuthController {
     @Autowired
     private Scanner scanner;
     @Autowired
-    private AuthService authService;
+    private ProfileService authService;
     @Autowired
     private GetAction getAction;
 

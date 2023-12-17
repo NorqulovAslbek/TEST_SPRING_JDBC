@@ -1,5 +1,6 @@
 package org.example.repository;
 
+import org.example.dto.Profile;
 import org.example.dto.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -16,6 +17,7 @@ public class TestRepository {
     /**
      * createTestRepository()- Admin tomonidan kiritilgan testlarni
      * test bazasiga create qilish uchun ishlaydi.
+     *
      * @param test
      * @return
      */
@@ -26,15 +28,22 @@ public class TestRepository {
     }
 
     /**
-     getTestListsRepository()- method bazadagi barcha malumotlarni
-     Test objectlarini listi korinishiga otkazib return qiladi.
+     * getTestListsRepository()- method bazadagi barcha malumotlarni
+     * Test objectlarini listi korinishiga otkazib return qiladi.
      **/
     public List<Test> getTestListsRepository() {
         String sql = "SELECT * FROM test";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Test.class));
     }
 
+    public boolean deleteTestById(int id) {
+        String sql = "DELETE FROM test WHERE id=?";
+        return jdbcTemplate.update(sql, id) != 0;
+    }
 
 
-
+    public boolean changeTestByIdRepository(Integer id, Test test) {
+        String sql = "UPDATE test SET question=?, a=?,b=?,c=?,d=?,correctAnswer=? WHERE id=?";
+        return jdbcTemplate.update(sql, test.getQuestion(), test.getA(), test.getB(), test.getC(), test.getD(), test.getCorrectAnswer(),id) != 0;
+    }
 }
