@@ -31,7 +31,7 @@ public class AuthController {
                 case 2 -> login();
                 case 0 -> n = false;
                 default -> {
-                    System.out.println("No tog'ri tanlov iltimos qaytadan kiriting!!");
+                    System.out.println("Notog'ri tanlov iltimos qaytadan kiriting!!");
                 }
 
             }

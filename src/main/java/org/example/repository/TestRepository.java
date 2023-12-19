@@ -1,6 +1,4 @@
 package org.example.repository;
-
-import org.example.dto.Profile;
 import org.example.dto.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
